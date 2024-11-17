@@ -4,7 +4,7 @@
 
 local set = vim.opt
 
-set.shiftwidth = 4
-set.smarttab = true
+-- set.shiftwidth = 4
+-- set.smarttab = true
 
 vim.g.autoformat = false
