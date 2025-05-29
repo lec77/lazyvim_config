@@ -6,7 +6,8 @@ return {
     name = "catppuccin",
     lazy = false,
     priority = 1000,
-    opts = {
+    config = function()
+      require("catppuccin").setup({
         background = {
             light = "latte",
             dark = "mocha",
@@ -353,7 +354,33 @@ return {
                 }
             end,
         },
-    },
+      })
+      local function auto_switch_theme()
+        local hour = tonumber(os.date("%H"))
+        if hour >= 6 and hour < 18 then
+          vim.o.background = "light"
+        else
+          vim.o.background = "dark"
+        end
+        vim.cmd("colorscheme catppuccin")
+      end
+
+      auto_switch_theme()
+
+      local timer = vim.uv.new_timer()
+      if timer then
+        timer:start(0, 3600000, vim.schedule_wrap(auto_switch_theme)) -- 3600000ms = 1小时
+      end
+
+      vim.keymap.set("n", "<leader>tt", function()
+        if vim.o.background == "dark" then
+          vim.o.background = "light"
+        else
+          vim.o.background = "dark"
+        end
+        vim.cmd("colorscheme catppuccin")
+      end, { desc = "Toggle theme" })
+    end,
   },
   {
     "LazyVim/LazyVim",
