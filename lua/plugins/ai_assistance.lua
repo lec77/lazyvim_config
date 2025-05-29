@@ -36,9 +36,9 @@ return {
       -- add any opts here
       -- for example
       provider = "copilot",
-      copilot = {
-        model = "claude-3.7-sonnet",
-      },
+      -- copilot = {
+      --   model = "claude-3.7-sonnet",
+      -- },
       openai = {
         endpoint = "http://ipads.chat.gpt:3006/v1",
         model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
@@ -47,6 +47,7 @@ return {
         max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
+      hints = { enabled = false },
     },
     build = "make",
     dependencies = {
