@@ -373,7 +373,7 @@ return {
 
         -- 计算到下一个整点还需要多少秒
         local seconds_to_next_hour = (60 - current_min - 1) * 60 + (60 - current_sec)
-        return seconds_to_next_hour * 1000 -- 转换为毫秒
+        return seconds_to_next_hour * 1000 + 100 -- 加100毫秒以确保在下一个整点时执行
       end
 
       auto_switch_theme()
