@@ -34,17 +34,21 @@ return {
     version = false, -- Never set this value to "*"! Never!
     opts = {
       provider = "copilot",
-      -- copilot = {
-      --   model = "claude-3.7-sonnet",
-      -- },
-      -- openai = {
-      --   endpoint = "http://ipads.chat.gpt:3006/v1",
-      --   model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-      --   timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-      --   temperature = 0,
-      --   max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-      --   --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-      -- },
+      providers = {
+        copilot = {
+          timeout = 30000, -- Timeout in milliseconds
+        },
+        openai = {
+          endpoint = "http://ipads.chat.gpt:3006/v1",
+          model = "gpt-4o",
+          timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+          extra_request_body = {
+            temperature = 0.75,
+            max_completion_tokens = 16384, -- Increase this to include reasoning tokens (for reasoning models)
+            reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+          },
+        },
+      },
       hints = { enabled = false },
     },
     build = "make",
